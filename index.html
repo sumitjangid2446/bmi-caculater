@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bmi claculate</title>
+</head>
+<style>
+    body {
+
+        margin: 0;
+        background: linear-gradient(to left bottom, lightgreen, lightblue);
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        /* font-family: 'Courier New', Courier, monospace; */
+
+    }
+
+    .box {
+        padding: 10px 5px;
+        display: flex;
+        background-color: aquamarine;
+        border-radius: 20px;
+    
+        text-align: center;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+        margin: 10px 15px;
+    }
+
+    .box h2 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 2rem;
+    }
+
+    label {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.6rem;
+        margin-left: 10px;
+    }
+
+    input {
+        padding: 8px 6px;
+        /* border-bottom: p3x solid #333; */
+        margin: 5px 8px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        margin-left: 10px;
+        width: 200px;
+        height: 20px;
+        margin-left: 30px;
+    }
+
+    button {
+        height: 35px;
+        width: 100px;
+        margin-left: 40%;
+        font-size: 20px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+        cursor: pointer;
+        margin-top: 20px;
+        border: none;
+        background-color: rgb(23, 244, 152);
+        border-radius: 10px;
+        /* color: white; */
+    }
+
+    button:hover {
+        box-shadow: 2px 2px 2px 2px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+
+        /* box-shadow: 1px ; */
+        background-color: rgb(89, 248, 211);
+    }
+
+    p {
+        /* background: linear-gradient(to left bottom, rgb(163, 247, 208), rgb(88, 230, 166)); */
+        /* border-radius: 5px; */
+        margin-left: 10px;
+    }
+    #msg{
+        font-weight: bolder;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.4rem;
+        margin-left: 20px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>Body Mass Index (BMI)</h2>
+
+            <label for="height">
+                enter height Cm.
+                <input type="number" id="height"><br>
+            </label>
+            <label for="weight">
+                enter weight Kg.
+                <input type="number" id="weight">
+            </label>
+            <button id="btn" onclick="submit()">Calculate</button>
+            <p id="text" style="font-size:1.4rem;font-weight:bolder;">Total weight is :-</p>
+            <span id="msg"></span>
+        </div>
+    </div>
+</body>
+<script>
+
+    function submit() {
+        let height = parseInt(document.getElementById('height').value) / 100;
+        let weight = parseInt(document.getElementById('weight').value);
+        let message = document.getElementById('msg');
+        let text = document.getElementById('text');
+
+        if (!height || !weight || height <= 0) {
+            text.innerText = "Enter valid height and weight!";
+            text.style.color = "red";
+            return;
+        }
+        let bmi = weight / (height * height);
+        text.innerText = "Your Bmi is :- " + bmi.toFixed(2);
+        // text.style.color = "red";
+        if (bmi <= 18.5) {
+            message.innerText = 'Underweight';
+            message.style.color = 'orange'
+        }
+        else if (bmi >= 18.5 && bmi < 25) {
+            message.innerText = 'Normal weight';
+            message.style.color = "green";
+
+        }
+        else if (bmi >= 25 && bmi < 30) {
+            message.innerText = 'Overweight ';
+            message.style.color = "darkorange";
+        }
+        else {
+            message.innerText = 'Obese';
+            message.style.color = "red";
+        }
+    }
+</script>
+
+</html>
